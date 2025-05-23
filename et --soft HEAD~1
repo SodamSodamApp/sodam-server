@@ -1,0 +1,65 @@
+[33mcommit 9475c64a6f8381873eb87fcca2a5eb1723645449[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: pure77 <qkralsgus90@naver.com>
+Date:   Fri May 23 16:59:05 2025 +0900
+
+    bookmarkBranch test commit
+
+[33mcommit 94b537d006d689653bd607c5532a1e67a8fa6fc8[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/dev[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: 노영오 <nohyo05@naver.com>
+Date:   Wed May 21 15:54:54 2025 +0900
+
+    feat: 클라우드 테스트용 controller 생성
+
+[33mcommit a6884f8527ad68436317f6e4b6c66b5c04d15a41[m
+Author: 노영오 <nohyo05@naver.com>
+Date:   Wed May 21 15:46:18 2025 +0900
+
+    setting: 환경변수 오류 수정
+
+[33mcommit ca59b03f65b1f219fc298bc8b2b29dab2d77adaf[m
+Author: 노영오 <nohyo05@naver.com>
+Date:   Wed May 21 15:44:18 2025 +0900
+
+    setting: secrets 추가
+
+[33mcommit 4e79ce0ab6e0db8bf3728557b58709e763887deb[m
+Author: 노영오 <nohyo05@naver.com>
+Date:   Wed May 21 15:38:45 2025 +0900
+
+    setting: Cloud DB 연결 및 JPA 의존성 추가
+
+[33mcommit 2fef3e7bdffc4b20f8f55ac75e4e345d76e0f057[m
+Author: NOH Yeong O <nohyo05@naver.com>
+Date:   Wed May 21 14:57:07 2025 +0900
+
+    Update main_knu-univ.yml
+
+[33mcommit a68f41e506c123c2083d15561e80070696c5087f[m
+Author: NOH Yeong O <nohyo05@naver.com>
+Date:   Wed May 21 14:53:37 2025 +0900
+
+    Update main_knu-univ.yml
+
+[33mcommit 95695484482f36c19a37a12210c49c543313ad33[m
+Author: NOH Yeong O <nohyo05@naver.com>
+Date:   Wed May 21 14:48:40 2025 +0900
+
+    Update main_knu-univ.yml
+
+[33mcommit 46ca842fb72cc0346d605dfbfe72be2083425d8e[m
+Author: NOH Yeong O <nohyo05@naver.com>
+Date:   Wed May 21 14:46:11 2025 +0900
+
+    Update main_knu-univ.yml
+
+[33mcommit a6d8b12291c8d6efaffd95378406819d127b98ac[m
+Author: NOH Yeong O <nohyo05@naver.com>
+Date:   Wed May 21 14:44:54 2025 +0900
+
+    Add or update the Azure App Service build and deployment workflow config
+
+[33mcommit 52854bc4ff446ab5ab27def649c23df1565adbdc[m
+Author: 노영오 <nohyo05@naver.com>
+Date:   Wed May 21 14:12:29 2025 +0900
+
+    setting: gradle project setting
