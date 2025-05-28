@@ -1,8 +1,7 @@
-package com.sodam.BookmarkedPlaces.dto;
+package com.sodam.BookmarkedPlaces.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDateTime;
 
