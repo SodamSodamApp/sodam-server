@@ -7,14 +7,14 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class BookmarkedPlaceResponse {
+public class BookmarkedPlacesResponse {
     private Long id;
     private Long placeId;
     private String placeName;
     private String address;
     private LocalDateTime createdAt;
 
-    public BookmarkedPlaceResponse(Long id, Long placeId, String placeName, String address, LocalDateTime createdAt) {
+    public BookmarkedPlacesResponse(Long id, Long placeId, String placeName, String address, LocalDateTime createdAt) {
         this.id = id;
         this.placeId = placeId;
         this.placeName = placeName;

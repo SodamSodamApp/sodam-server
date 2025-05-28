@@ -1,11 +1,8 @@
 package com.sodam.BookmarkedPlaces.Controller;
 
-
-import com.sodam.BookmarkedPlaces.BookmarkedPlaces;
-import com.sodam.BookmarkedPlaces.dto.BookmarkedPlaceRequest;
-import com.sodam.BookmarkedPlaces.dto.BookmarkedPlaceResponse;
+import com.sodam.BookmarkedPlaces.dto.BookmarkedPlacesDto;
+import com.sodam.BookmarkedPlaces.dto.BookmarkedPlacesRequest;
 import com.sodam.BookmarkedPlaces.Service.BookmarkedService;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -21,35 +19,28 @@ import java.util.Map;
 @Tag(name = "Bookmarked Places", description = "찜(하트)한 가게 API")
 public class BookmarkedController {
 
-    private  final BookmarkedService bookmarkedService;
+    private final BookmarkedService bookmarkedService;
 
     @Operation(summary = "사용자의 찜한 가게 목록 조회 (커서 기반 무한스크롤)")
     @GetMapping("/{userId}")
-    public ResponseEntity<Map<String, Object>> getBookmarks(
+    public ResponseEntity<List<BookmarkedPlacesDto>> getBookmarks(
             @PathVariable Long userId,
             @RequestParam(required = false) Long lastId,   // 처음 호출시 null
             @RequestParam(defaultValue = "10") int size
     ) {
-        return ResponseEntity.ok(bookmarkedService.getBookmarks(userId, lastId, size));
+        List<BookmarkedPlacesDto> bookmarks = bookmarkedService.getBookmarks(userId, lastId, size);
+        return ResponseEntity.ok(bookmarks);
     }
 
-
     @Operation(summary = "찜(하트) 추가")
-    @PostMapping("/addBoomark")
+    @PostMapping("/addBookmark")
     public ResponseEntity<Map<String, Object>> addBookmark(
-            @RequestBody BookmarkedPlaceRequest request
+            @RequestBody BookmarkedPlacesRequest request
     ) {
-        BookmarkedPlaces entity = bookmarkedService.addBookmarks(
+        BookmarkedPlacesDto res = bookmarkedService.addBookmarks(
                 request.getUserId(),
                 request.getPlaceId(),
                 LocalDateTime.now()
-        );
-        BookmarkedPlaceResponse res = new BookmarkedPlaceResponse(
-                entity.getUserInfo().getId(),
-                entity.getPlace().getId(),
-                entity.getPlace().getName(),
-                entity.getPlace().getAddress(),
-                entity.getCreatedAt()
         );
         return ResponseEntity.ok(Map.of("status", "success", "data", res));
     }
@@ -57,8 +48,9 @@ public class BookmarkedController {
     @Operation(summary = "찜(하트) 삭제")
     @PatchMapping("/deleteBookmark")
     public ResponseEntity<Map<String, String>> deleteBookmark(
-            @RequestBody BookmarkedPlaceRequest request
+            @RequestBody BookmarkedPlacesRequest request
     ) {
+        // 삭제 로직 구현 필요 (void 또는 boolean 반환 추천)
         return ResponseEntity.ok(Map.of("status", "success", "message", "Bookmark deleted"));
     }
 }

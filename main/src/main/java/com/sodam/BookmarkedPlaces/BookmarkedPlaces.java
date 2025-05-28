@@ -3,10 +3,7 @@ package com.sodam.BookmarkedPlaces;
 import com.sodam.common.entity.Place;
 import com.sodam.common.entity.UserInfo;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -16,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "bookmarked_places")
 public class BookmarkedPlaces {
 
