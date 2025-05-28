@@ -1,4 +1,4 @@
-package com.sodam.BookmarkedReviews.DTO;
+package com.sodam.BookmarkedReviews.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

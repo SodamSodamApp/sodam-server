@@ -1,4 +1,4 @@
-package com.sodam.BookmarkedPlaces.DTO;
+package com.sodam.BookmarkedPlaces.dto;
 
 import lombok.Getter;
 import lombok.Setter;

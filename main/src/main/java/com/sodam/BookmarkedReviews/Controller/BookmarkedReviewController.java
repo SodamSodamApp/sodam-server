@@ -1,6 +1,6 @@
 package com.sodam.BookmarkedReviews.Controller;
 
-import com.sodam.BookmarkedReviews.DTO.BookmarkedReviewRequest;
+import com.sodam.BookmarkedReviews.dto.BookmarkedReviewRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;

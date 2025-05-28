@@ -2,9 +2,10 @@ package com.sodam.BookmarkedPlaces.Controller;
 
 
 import com.sodam.BookmarkedPlaces.BookmarkedPlaces;
+import com.sodam.BookmarkedPlaces.dto.BookmarkedPlaceRequest;
+import com.sodam.BookmarkedPlaces.dto.BookmarkedPlaceResponse;
 import com.sodam.BookmarkedPlaces.Service.BookmarkedService;
-import com.sodam.BookmarkedPlaces.DTO.BookmarkedPlaceRequest;
-import com.sodam.BookmarkedPlaces.DTO.BookmarkedPlaceResponse;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

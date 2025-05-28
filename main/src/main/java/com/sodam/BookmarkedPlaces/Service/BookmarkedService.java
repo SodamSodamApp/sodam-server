@@ -7,6 +7,8 @@ import com.sodam.common.entity.UserInfo;
 import com.sodam.common.repository.PlaceRepository;
 import com.sodam.common.repository.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,14 +24,20 @@ public class BookmarkedService {
     private  final UserInfoRepository userInfoRepository;
 
     public Map<String, Object> getBookmarks(Long userId, Long lastId, int size) {
-        List<BookmarkedPlaces> bookmarks;
+
+        // userId로 UserInfo 엔티티를 조회
+        UserInfo userInfo = userInfoRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 userId"));
+
+        // Pageable 생성 (0-based page, size개만큼)
+        Pageable pageable = PageRequest.of(0, size);
 
         // 최초 호출이면 최신순부터 size개
+        List<BookmarkedPlaces> bookmarks;
         if (lastId == null || lastId == 0) {
-            bookmarks = bookmarkedRepository.findTopNByUserIdOrderByIdDesc(userId, size);
+            bookmarks = bookmarkedRepository.findByUserInfoOrderByIdDesc(userInfo, pageable);
         } else {
-            // 마지막 id보다 작은(더 예전) 것 중 size개
-            bookmarks = bookmarkedRepository.findTopNByUserIdAndIdLessThanOrderByIdDesc(userId, lastId, size);
+            bookmarks = bookmarkedRepository.findByUserInfoAndIdLessThanOrderByIdDesc(userInfo, lastId, pageable);
         }
 
         Long nextLastId = bookmarks.isEmpty() ? null : bookmarks.get(bookmarks.size() - 1).getId();
@@ -38,7 +46,6 @@ public class BookmarkedService {
         result.put("content", bookmarks);
         result.put("nextCursor", nextLastId);
         result.put("isLast", bookmarks.size() < size); // true면 마지막 데이터임
-
         return result;
     }
     public BookmarkedPlaces addBookmarks(Long userId, Long placeId, LocalDateTime localDateTime){
