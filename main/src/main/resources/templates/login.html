@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KakaoLogin</title>
+</head>
+<body>
+<div class="text-center">
+    <a th:href="@{'https://kauth.kakao.com/oauth/authorize'(response_type='code', client_id=${kakaoApiKey}, redirect_uri=${redirectUri})}">
+        <img th:src="@{/kakao_login_medium_narrow.png}" alt="카카오 로그인">
+    </a>
+</div>
+</body>
+</html>
