@@ -24,9 +24,9 @@ public class BookmarkedController {
     @Operation(summary = "사용자의 찜한 가게 목록 조회 (커서 기반 무한스크롤)")
     @GetMapping("/{userId}")
     public ResponseEntity<List<BookmarkedPlacesDto>> getBookmarks(
-            @PathVariable Long userId,
-            @RequestParam(required = false) Long lastId,   // 처음 호출시 null
-            @RequestParam(defaultValue = "10") int size
+            @PathVariable("userId") Long userId,  // 반드시 이름 명시!
+            @RequestParam(required = false, name = "lastId") Long lastId, // 처음호출시 null
+            @RequestParam(defaultValue = "10", name = "size") int size
     ) {
         List<BookmarkedPlacesDto> bookmarks = bookmarkedService.getBookmarks(userId, lastId, size);
         return ResponseEntity.ok(bookmarks);
