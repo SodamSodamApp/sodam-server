@@ -16,6 +16,7 @@ public class BookmarkedPlacesDto {
     private Long placeId;
     private String placeName;
     private String address;
+
     private LocalDateTime createdAt;
 
     public static BookmarkedPlacesDto fromEntity(BookmarkedPlaces entity) {

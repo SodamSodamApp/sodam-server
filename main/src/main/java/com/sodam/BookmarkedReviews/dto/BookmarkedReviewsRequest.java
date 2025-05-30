@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BookmarkedReviewRequest {
+public class BookmarkedReviewsRequest {
     private Long userId;
     private Long reviewId;
 }
