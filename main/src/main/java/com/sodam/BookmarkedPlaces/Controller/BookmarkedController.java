@@ -46,11 +46,12 @@ public class BookmarkedController {
     }
 
     @Operation(summary = "찜(하트) 삭제")
-    @PatchMapping("/deleteBookmark")
-    public ResponseEntity<Map<String, String>> deleteBookmark(
-            @RequestBody BookmarkedPlacesRequest request
+    @PatchMapping("/deleteBookmark/{id}")
+    public ResponseEntity<Map<String, Object>> deleteBookmark(
+            @PathVariable("id") Long id
     ) {
+        BookmarkedPlacesDto res = bookmarkedService.deleteBookmarks(id);
         // 삭제 로직 구현 필요 (void 또는 boolean 반환 추천)
-        return ResponseEntity.ok(Map.of("status", "success", "message", "Bookmark deleted"));
+        return ResponseEntity.ok(Map.of("status", "success","data",res));
     }
 }

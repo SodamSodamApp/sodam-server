@@ -3,6 +3,7 @@ package com.sodam.BookmarkedPlaces.Service;
 import com.sodam.BookmarkedPlaces.BookmarkedPlaces;
 import com.sodam.BookmarkedPlaces.Repository.BookmarkedRepository;
 import com.sodam.BookmarkedPlaces.dto.BookmarkedPlacesDto;
+import com.sodam.BookmarkedPlaces.dto.BookmarkedPlacesRequest;
 import com.sodam.common.entity.Place;
 import com.sodam.common.entity.UserInfo;
 import com.sodam.common.repository.PlaceRepository;
@@ -63,5 +64,14 @@ public class BookmarkedService {
 
         BookmarkedPlaces saved = bookmarkedRepository.save(entity);
         return BookmarkedPlacesDto.fromEntity(saved); // 엔티티 → DTO로 반환
+    }
+
+    @Transactional
+    public BookmarkedPlacesDto deleteBookmarks(Long id) {
+        BookmarkedPlaces bookmarkedPlaces = bookmarkedRepository.findById(id).orElseThrow(() -> new RuntimeException("placeBookmark not found"));
+
+        bookmarkedRepository.delete(bookmarkedPlaces);
+
+        return BookmarkedPlacesDto.fromEntity(bookmarkedPlaces);
     }
 }

@@ -10,14 +10,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BookmarkedReviewsAddDto {
+public class BookmarkedReviewsDto {
     private Long id;
     private Long userId;
     private Long reviewId;
     private LocalDateTime createdAt;
 
-    public static BookmarkedReviewsAddDto fromEntity(BookmarkedReviews entity) {
-        return BookmarkedReviewsAddDto.builder()
+    public static BookmarkedReviewsDto fromEntity(BookmarkedReviews entity) {
+        return BookmarkedReviewsDto.builder()
                 .id(entity.getId())
                 .userId(entity.getUserInfo().getId())
                 .reviewId(entity.getReview().getId())

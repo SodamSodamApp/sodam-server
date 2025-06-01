@@ -2,18 +2,15 @@ package com.sodam.BookmarkedReviews.Service;
 
 import com.sodam.BookmarkedReviews.BookmarkedReviews;
 import com.sodam.BookmarkedReviews.Repository.BookmarkedReviewRepository;
-import com.sodam.BookmarkedReviews.dto.BookmarkedReviewsAddDto;
+import com.sodam.BookmarkedReviews.dto.BookmarkedReviewsDto;
 import com.sodam.BookmarkedReviews.dto.BookmarkedReviewsGetDto;
 import com.sodam.BookmarkedReviews.dto.BookmarkedReviewsRequest;
-import com.sodam.common.entity.Place;
 import com.sodam.common.entity.UserInfo;
 import com.sodam.common.repository.PlaceRepository;
 import com.sodam.common.repository.UserInfoRepository;
 import com.sodam.common.service.FileStorageService;
 import com.sodam.review.dto.ReviewDto;
 import com.sodam.review.entity.Review;
-import com.sodam.review.entity.ReviewPhoto;
-import com.sodam.review.entity.ReviewTag;
 import com.sodam.review.repository.ReviewPhotoRepository;
 import com.sodam.review.repository.ReviewRepository;
 import com.sodam.review.repository.ReviewTagRepository;
@@ -23,9 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +34,7 @@ public class BookmarkedReviewService {
     private final BookmarkedReviewRepository bookmarkedReviewRepository;
 
     @Transactional
-    public BookmarkedReviewsAddDto addBookmarkReview(BookmarkedReviewsRequest request) {
+    public BookmarkedReviewsDto addBookmarkReview(BookmarkedReviewsRequest request) {
         UserInfo userInfo = userInfoRepository.findById(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         Review review = reviewRepository.findById(request.getReviewId()).orElseThrow(() -> new RuntimeException("review not found"));
@@ -55,11 +50,17 @@ public class BookmarkedReviewService {
 
 
 
-        return BookmarkedReviewsAddDto.fromEntity(savedBookmarkedReviews);
+        return BookmarkedReviewsDto.fromEntity(savedBookmarkedReviews);
     }
 
     @Transactional
-    public void  deleteBookmarkReview(Long id) {}
+    public BookmarkedReviewsDto  deleteBookmarkReview(Long id) {
+        BookmarkedReviews bookmarkedReviews = bookmarkedReviewRepository.findById(id).orElseThrow(() -> new RuntimeException("id not found"));
+
+        bookmarkedReviewRepository.delete(bookmarkedReviews);
+
+        return BookmarkedReviewsDto.fromEntity(bookmarkedReviews);
+    }
 
     @Transactional
     public List<BookmarkedReviewsGetDto> getBookmarkedReviews(Long userId, Long lastId, int size) {

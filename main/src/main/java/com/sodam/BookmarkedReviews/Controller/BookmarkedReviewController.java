@@ -1,7 +1,7 @@
 package com.sodam.BookmarkedReviews.Controller;
 
 import com.sodam.BookmarkedReviews.Service.BookmarkedReviewService;
-import com.sodam.BookmarkedReviews.dto.BookmarkedReviewsAddDto;
+import com.sodam.BookmarkedReviews.dto.BookmarkedReviewsDto;
 import com.sodam.BookmarkedReviews.dto.BookmarkedReviewsGetDto;
 import com.sodam.BookmarkedReviews.dto.BookmarkedReviewsRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/BookmarkedReviews")
@@ -35,16 +36,15 @@ public class BookmarkedReviewController {
 
     @Operation(summary = "리뷰 찜(하트) 추가")
     @PostMapping("/addReviewBookmark")
-    public ResponseEntity<BookmarkedReviewsAddDto> addBookmark(@RequestBody BookmarkedReviewsRequest request) {
-        BookmarkedReviewsAddDto response = bookmarkedReviewService.addBookmarkReview(request);
+    public ResponseEntity<BookmarkedReviewsDto> addBookmark(@RequestBody BookmarkedReviewsRequest request) {
+        BookmarkedReviewsDto response = bookmarkedReviewService.addBookmarkReview(request);
         return ResponseEntity.ok(response);
     }
 
     @Operation(summary = "리뷰 찜(하트) 삭제")
-    @PatchMapping("/deleteReviewBookmark")
-    public ResponseEntity<Map<String, String>> deleteReviewBookmark(@RequestBody BookmarkedReviewsRequest request) {
-        return ResponseEntity.ok(
-                Map.of("message", "이건 리뷰 찜 삭제 API입니다.")
-        );
+    @PatchMapping("/deleteReviewBookmark/{id}")
+    public ResponseEntity<Map<String, Object>> deleteReviewBookmark(@PathVariable("id") Long id) {
+        BookmarkedReviewsDto res = bookmarkedReviewService.deleteBookmarkReview(id);
+        return ResponseEntity.ok(Map.of("status", "success","data",res));
     }
 }
